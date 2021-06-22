@@ -35,7 +35,7 @@ def main():
         wrong_input, \
         dead_heat, \
         win, \
-        possible_position, \
+        possible_position, \ 
         winning_combinations = setup(size_map)
         
         draw(table, size_map)       # начальная отрисовка
