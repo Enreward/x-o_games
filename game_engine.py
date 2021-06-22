@@ -147,7 +147,6 @@ def winning(table, player, winning_combinations):
     return False
     
 
-
 def set_winning_combinations(size_map):
     '''
         Функция генерирует выигрышные комбинации для переданного размера карты

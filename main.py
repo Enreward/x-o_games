@@ -1,5 +1,6 @@
 from game_engine import *
 
+
 def setup(size_map):
     '''
         Предигровая инициализация. Выполнится при запуске один раз.
@@ -14,7 +15,7 @@ def setup(size_map):
             winning_combinations -
 
     '''
-    table = [['-' for j in range(size_map)] for i in range(size_map)]
+    table = [['-' * size_map] * size_map]
     turn = 0                # переменная определяет текущего игрока
     wrong_input = False     # Неправильный ход
     dead_heat = False       # Ничья
@@ -22,6 +23,7 @@ def setup(size_map):
     possible_position = [(i, j) for i in range(size_map) for j in range(size_map)]
     winning_combinations = set_winning_combinations(size_map)
     return table, turn, wrong_input, dead_heat, win, possible_position, winning_combinations
+
 
 def main():
     '''
@@ -31,12 +33,12 @@ def main():
     try:
         size_map = set_size_map()
         table, \
-        turn, \
-        wrong_input, \
-        dead_heat, \
-        win, \
-        possible_position, \ 
-        winning_combinations = setup(size_map)
+            turn, \
+            wrong_input, \
+            dead_heat, \
+            win, \
+            possible_position, \
+            winning_combinations = setup(size_map)
         
         draw(table, size_map)       # начальная отрисовка
         player = PLAYERS[turn]      # устанавливаем первого игрока
