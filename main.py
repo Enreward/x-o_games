@@ -43,8 +43,7 @@ def main():
         draw(table, size_map)       # начальная отрисовка
         player = PLAYERS[turn]      # устанавливаем первого игрока
     except KeyboardInterrupt:
-        print("\n")
-        print("Конец игры.")
+        print("\nКонец игры.")
         return
     while not win:
         try:
