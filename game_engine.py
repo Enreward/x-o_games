@@ -16,10 +16,13 @@ def set_size_map():
             os.system("cls")
             print("Добро пожаловать в крестики-нолики!\n")
             if error:
-                print("Вы выбрали слишком маленький размер карты.")
+                print("Вы выбрали слишком большой размер карты.")
                 error = False
-            count = int(input("Введите размер карты.\nПо-умолчанию - 3: "))
+            count = int(input("Введите размер карты, от 3 до 10.\nПо-умолчанию - 3: "))
             if count < 3:
+                print("Вы выбрали слишком маленький размер карты.")
+                raise ValueError
+            elif count > 10:
                 error = True
                 continue
             replay = False
