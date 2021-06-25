@@ -18,6 +18,7 @@ def setup(size_map):
     table = []
     for i in range(size_map):
         table.append(['-'] * size_map)
+    
     turn = 0                # переменная определяет текущего игрока
     wrong_input = False     # Неправильный ход
     dead_heat = False       # Ничья
