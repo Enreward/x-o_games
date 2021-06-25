@@ -15,7 +15,9 @@ def setup(size_map):
             winning_combinations -
 
     '''
-    table = [['-' * size_map] * size_map]
+    table = []
+    for i in range(size_map):
+        table.append(['-'] * size_map)
     turn = 0                # переменная определяет текущего игрока
     wrong_input = False     # Неправильный ход
     dead_heat = False       # Ничья
