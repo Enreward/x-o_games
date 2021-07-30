@@ -2,9 +2,9 @@ from game_engine import *
 
 
 def setup(size_map):
-    '''
+    """
         Предигровая инициализация. Выполнится при запуске один раз.
-        :size_map:
+        :param size_map:
         :return:
             table - [int][int],
             turn - int,
@@ -12,9 +12,8 @@ def setup(size_map):
             dead_heat - bool,
             win - bool,
             possible_position - [(int, int)],
-            winning_combinations -
-
-    '''
+            winning_combinations - [[(int, int), (int, int), (int, int)]]
+    """
     table = []
     for i in range(size_map):
         table.append(['-'] * size_map)
@@ -29,10 +28,10 @@ def setup(size_map):
 
 
 def main():
-    '''
+    """
         Основной алгоритм игры
         :return: None
-    '''
+    """
     try:
         size_map = set_size_map()
         table, \
@@ -48,7 +47,7 @@ def main():
     except KeyboardInterrupt:
         print("\nКонец игры.")
         return
-    while not win:
+    while not win and not dead_heat:
         try:
             if wrong_input:
                 print("Вы ошиблись. Пожалуйста, повторите ход.")
@@ -68,7 +67,7 @@ def main():
                 dead_heat = True
             win = winning(table, player, winning_combinations)
             # Проверка победы
-            if win:
+            if win or dead_heat:
                 print(outro(player, win, dead_heat))
             # Меняем игрока
             turn = (turn + 1) % 2

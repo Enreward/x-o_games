@@ -4,10 +4,10 @@ PLAYERS = ['Х', 'O']    # Массив игроков
 
 
 def set_size_map():
-    '''
+    """
         Функция выбора размера карты
         :return: размер карты - int
-    '''
+    """
     try:
         error = False
         replay = True
@@ -32,11 +32,11 @@ def set_size_map():
     
 
 def instruction(size_map):
-    '''
+    """
         Инструкция
-        :size_map: размер карты - int
+        :param size_map: размер карты - int
         :return: Правила игры
-    '''
+    """
     text_intro = f"""Крестики-Нолики.
 Правила:
 1) Игроки ходят по очереди. Первым ходит игрок, ставящий крестик (X).
@@ -54,14 +54,14 @@ def instruction(size_map):
 
 
 def outro(player, win, dead_heat=False):
-    '''
+    """
         Текст для окончания игры
-        :player: текущий игрок - элемент массива PLAYERS
-        :win: проверка победы - bool
-        :dead_heat: проверка ничьи - bool
+        :param player: текущий игрок - элемент массива PLAYERS
+        :param win: проверка победы - bool
+        :param dead_heat: проверка ничьи - bool
         :return: текст окончания игры в зависимости от ситуации:
             Ничья или Победа.
-    '''
+    """
     if not win and dead_heat:
         text_outro = "Ничья!"
     else:
@@ -73,12 +73,12 @@ def outro(player, win, dead_heat=False):
 
 
 def draw(table, size_map):
-    '''
+    """
         Функция отрисовки поля
-        :table: игровое поле - [char][char]
-        :size_map: размер карты - int
+        :param table: игровое поле - [char][char]
+        :param size_map: размер карты - int
         :return: None
-    '''
+    """
     os.system("cls")
     print(instruction(size_map))
     
@@ -95,49 +95,49 @@ def draw(table, size_map):
 
 
 def player_input(player):
-    '''
+    """
         Ввод значений с клавиатуры
-        :player: текущий игрок - элемент массива PLAYERS
+        :param player: текущий игрок - элемент массива PLAYERS
         :return: координаты хода игрока - (int, int)
-    '''
+    """
     _input = input(f"Ходит {player}: ")
     _input = tuple(map(int, _input))
     return _input
 
 
 def check_move(position, possible_position):
-    '''
+    """
         Проверка доступности хода
-        :position: координаты хода игрока - (int, int)
-        :possible_position: список доступных ходов -
+        :param position: координаты хода игрока - (int, int)
+        :param possible_position: список доступных ходов -
         :return: None
-    '''
+    """
     return position in possible_position
 
 
 def move(table, player, position, possible_position):
-    '''
+    """
         Функция фиксации хода грока
-        :table: игровое поле - [char][char]
-        :player: текущий игрок - элемент массива PLAYERS
-        :position: координаты хода игрока - (int, int)
-        :possible_position: список доступных ходов -
+        :param table: игровое поле - [char][char]
+        :param player: текущий игрок - элемент массива PLAYERS
+        :param position: координаты хода игрока - (int, int)
+        :param possible_position: список доступных ходов -
         :return: изменённые массивы table, possible_position
-    '''
+    """
     possible_position.remove(position)
     table[position[0]][position[1]] = player
     return table, possible_position
 
 
 def winning(table, player, winning_combinations):
-    '''
+    """
         Проверка победы
-        :table: игровое поле - [char][char]
-        :player: текущий игрок - элемент массива PLAYERS
-        :winning_combinations: список хранящий списки выигрышных комбинаций -
+        :param table: игровое поле - [char][char]
+        :param player: текущий игрок - элемент массива PLAYERS
+        :param winning_combinations: список хранящий списки выигрышных комбинаций -
                                 [[(int, int), (int, int), (int, int)]]
         :return: True/False
-    '''
+    """
     for comb in winning_combinations:
         check_comb = []
         for i, j in comb:
@@ -151,12 +151,12 @@ def winning(table, player, winning_combinations):
     
 
 def set_winning_combinations(size_map):
-    '''
+    """
         Функция генерирует выигрышные комбинации для переданного размера карты
-        :size_map: размер карты - int
+        :param size_map: размер карты - int
         :return: список хранящий списки выигрышных комбинаций -
                     [[(int, int), (int, int), (int, int)]]
-    '''
+    """
     winning_combinations = [[(i, j) for j in range(size_map)] for i in range(size_map)]
     winning_combinations += [[(i, j) for i in range(size_map)] for j in range(size_map)]
     winning_combinations += [[(i, i) for i in range(size_map)]]
